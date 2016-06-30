@@ -17,8 +17,6 @@
   },
   "homepage": "https://github.com/gabemartinez/txalcsales-chartjs#readme",
   "dependencies": {
-    "browserify-fs": "^1.0.0",
-    "chart.js": "^2.1.6",
-    "csvtojson": "^1.0.0"
+    "chart.js": "^2.1.6"
   }
 }
