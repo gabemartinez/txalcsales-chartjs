@@ -6,5 +6,5 @@ Texas Mixed Beverage Gross Receipts Tax Receipts - A D3.js Project
 # Using Chart.js
 [Chart.js](http://www.chartjs.org/)
 
-# Run Locally With SimpleHTTPServer
+# Run Locally - SimpleHTTPServer
 python -m SimpleHTTPServer 8888
