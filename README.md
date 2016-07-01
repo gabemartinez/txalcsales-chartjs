@@ -1,5 +1,5 @@
 # txalcsales-chartjs
-Texas Mixed Beverage Gross Receipts Tax Receipts - A D3.js Project
+Texas Mixed Beverage Gross Receipts Tax Receipts - A Chart.js Project
 
 [Data Source](http://www.texastransparency.org/Data_Center/Search_Datasets.php)
 
