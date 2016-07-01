@@ -11,10 +11,28 @@ var randomColor = function() {
     return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
 };*/
 
+$.getJSON( "data/MIXEDBEV_06_2016.json", function( json ) {
+
+  dataarray = [];
+  dataarray.push(json[0].field10);
+  dataarray.push(json[1].field10);
+
+  /*var a = json[0].field10;
+  var b = json[1].field10;*/
+
+  /*anotherarray = [];
+  anotherarray.push(a);
+  anotherarray.push(b);*/
+  console.log(dataarray);
+  /*console.log('a: '+a);
+  console.log('b: '+b);
+  console.log('a+b: '+(a+b));*/
+ });
+
 var ourlabels = function() {
     //return ["January", "February", "March", "April", "May", "June", "July", "August"];
     var thisarray = [];
-    for (i = 0; i < 50; i++) {
+    for (i = 1; i < 51; i++) {
       thisarray.push("Label: "+i);
     }
     return thisarray;
@@ -23,7 +41,7 @@ var ourlabels = function() {
 var ourvalues = function() {
     //return [20, 30, 40, 50, 60, 70, 80, 90];
     var thisarray = [];
-    for (i = 0; i < 50; i++) {
+    for (i = 1; i < 51; i++) {
       thisarray.push(i);
     }
     return thisarray;
