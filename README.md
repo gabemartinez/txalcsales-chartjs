@@ -8,3 +8,6 @@ Texas Mixed Beverage Gross Receipts Tax Receipts - A Chart.js Project
 
 # Run Locally With SimpleHTTPServer
 python -m SimpleHTTPServer 8888
+
+# View Work in Progress
+[Click here.](http://www.txalcsales.martinezgabriel.com/)

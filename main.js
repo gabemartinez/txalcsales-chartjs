@@ -1,30 +1,18 @@
-//var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+$(document).ready(function() {
 
-/*var randomScalingFactor = function() {
-    return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
-};
-var randomColorFactor = function() {
-    return Math.round(Math.random() * 255);
-};
-var randomColor = function() {
-    return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
-};*/
+  var datafile = 'data/MIXEDBEV_06_2016.json';
 
+  var countycheck = 'EL PASO';
 
+  var totalcheck = 2000;
 
-
-
-window.onload = function() {
-
-  $.getJSON( "data/MIXEDBEV_06_2016.json", function( json ) {
-
-    countycheck = 'EL PASO';
+  $.getJSON( datafile, function( json ) {
 
     var ourlabels = function() {
         //return ["January", "February", "March", "April", "May", "June", "July", "August"];
         var thisarray = [];
         for (i = 0; i < json.length; i++) {
-          if ($.trim(json[i].field4) == countycheck){
+          if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck){
             thisarray.push(json[i].field2);
           }
         }
@@ -35,36 +23,19 @@ window.onload = function() {
         //return [20, 30, 40, 50, 60, 70, 80, 90];
         var thisarray = [];
         for (i = 0; i < json.length; i++) {
-          if ($.trim(json[i].field4) == countycheck){
+          if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck){
             thisarray.push(json[i].field10);
           }
         }
         return thisarray;
     };
 
-    //dataarray = [];
-    //dataarray.push(json[0].field10);
-    //dataarray.push(json[1].field10);
-
-    /*var a = json[0].field10;
-    var b = json[1].field10;*/
-
-    /*anotherarray = [];
-    anotherarray.push(a);
-    anotherarray.push(b);*/
-    //console.log(json);
-    /*console.log('a: '+a);
-    console.log('b: '+b);
-    console.log('a+b: '+(a+b));*/
-
-
-
   var barChartData = {
       labels: ourlabels(),
       //labels: ["January", "February", "March", "April", "May", "June", "July"],
       datasets: [{
           label: '$',
-          backgroundColor: "rgba(220,220,220,0.5)",
+          backgroundColor: "rgba(229,59,81,0.75)",
           //data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
           //data: [20, 30, 40, 50, 60, 70, 80, 90]
           data: ourvalues()
@@ -82,8 +53,8 @@ window.onload = function() {
             // In this case, we are setting the border of each bar to be 2px wide and green
             elements: {
                 rectangle: {
-                    borderWidth: 2,
-                    borderColor: 'rgb(74, 150, 226)',
+                    borderWidth: 1,
+                    borderColor: 'rgb(252,217,32)',
                     borderSkipped: 'bottom'
                 }
             },
@@ -94,12 +65,22 @@ window.onload = function() {
             },
             title: {
                 display: true,
-                text: 'June Alcohol Sales'
+                text: 'data: ' + datafile + ' || ' + 'county: ' + countycheck + ' || ' + 'total greater than: ' +  totalcheck
             }
         }
     });
 
+    //var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+    /*var randomScalingFactor = function() {
+        return (Math.random() > 0.5 ? 1.0 : -1.0) * Math.round(Math.random() * 100);
+    };
+    var randomColorFactor = function() {
+        return Math.round(Math.random() * 255);
+    };
+    var randomColor = function() {
+        return 'rgba(' + randomColorFactor() + ',' + randomColorFactor() + ',' + randomColorFactor() + ',.7)';
+    };*/
 
     /*$('#randomizeData').click(function() {
         var zero = Math.random() < 0.2 ? true : false;
@@ -157,6 +138,6 @@ window.onload = function() {
         window.myBar.update();
     });*/
 
-});
+  });
 
-};
+});
