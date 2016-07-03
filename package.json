@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/gabemartinez/txalcsales-chartjs#readme",
   "dependencies": {
+    "bootstrap": "^3.3.6",
     "chart.js": "^2.1.6"
   }
 }
