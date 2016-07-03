@@ -58,7 +58,7 @@ $(document).ready(function() {
           var thisarray = [];
           for (i = 0; i < json.length; i++) {
             if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck){
-              thisarray.push(json[i].field2);
+              thisarray.push(json[i].field2 + json[i].field3);
             }
           }
           return thisarray;
@@ -125,6 +125,6 @@ $(document).ready(function() {
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
 
   ga('create', 'UA-80253294-1', 'auto');
-  ga('send', 'pageview');  
+  ga('send', 'pageview');
 
 });
