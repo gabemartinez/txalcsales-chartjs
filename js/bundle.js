@@ -1,63 +1,18 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 $(document).ready(function() {
 
-  $('#decemberData').click(function() {
+  $('#renderData').click(function() {
+      var monthcheck = $('#monthcheck').val();
       var totalcheck = $('#totalcheck').val();
       var zipcheck = $('#zipcheck').val();
+      var datatext = $( "#monthcheck option:selected" ).text();
+      console.log(datatext);
       myBar.destroy();
       myBar.update();
-      runmychart('data/MIXEDBEV_12_2015.json', 'EL PASO', totalcheck, zipcheck);
+      runmychart('data/'+monthcheck+'.json', 'EL PASO', totalcheck, zipcheck, datatext);
   });
 
-  $('#januaryData').click(function() {
-      var totalcheck = $('#totalcheck').val();
-      var zipcheck = $('#zipcheck').val();
-      myBar.destroy();
-      myBar.update();
-      runmychart('data/MIXEDBEV_01_2016.json', 'EL PASO', totalcheck, zipcheck);
-  });
-
-  $('#februaryData').click(function() {
-      var totalcheck = $('#totalcheck').val();
-      var zipcheck = $('#zipcheck').val();
-      myBar.destroy();
-      myBar.update();
-      runmychart('data/MIXEDBEV_02_2016.json', 'EL PASO', totalcheck, zipcheck);
-  });
-
-  $('#marchData').click(function() {
-      var totalcheck = $('#totalcheck').val();
-      var zipcheck = $('#zipcheck').val();
-      myBar.destroy();
-      myBar.update();
-      runmychart('data/MIXEDBEV_03_2016.json', 'EL PASO', totalcheck, zipcheck);
-  });
-
-  $('#aprilData').click(function() {
-      var totalcheck = $('#totalcheck').val();
-      var zipcheck = $('#zipcheck').val();
-      myBar.destroy();
-      myBar.update();
-      runmychart('data/MIXEDBEV_04_2016.json', 'EL PASO', totalcheck, zipcheck);
-  });
-
-  $('#mayData').click(function() {
-      var totalcheck = $('#totalcheck').val();
-      var zipcheck = $('#zipcheck').val();
-      myBar.destroy();
-      myBar.update();
-      runmychart('data/MIXEDBEV_05_2016.json', 'EL PASO', totalcheck, zipcheck);
-  });
-
-  $('#juneData').click(function() {
-      var totalcheck = $('#totalcheck').val();
-      var zipcheck = $('#zipcheck').val();
-      myBar.destroy();
-      myBar.update();
-      runmychart('data/MIXEDBEV_06_2016.json', 'EL PASO', totalcheck, zipcheck);
-  });
-
-  var runmychart = function(datafile, countycheck, totalcheck, zipcheck){
+  var runmychart = function(datafile, countycheck, totalcheck, zipcheck, datatext){
 
     $.getJSON(datafile, function(json) {
 
@@ -107,7 +62,7 @@ $(document).ready(function() {
         labels: ourlabels(),
         //labels: ["January", "February", "March", "April", "May", "June", "July"],
         datasets: [{
-            label: '$',
+            label: 'Reported Tax: $',
             backgroundColor: "rgba(229,59,81,0.75)",
             //data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
             //data: [20, 30, 40, 50, 60, 70, 80, 90]
@@ -131,12 +86,13 @@ $(document).ready(function() {
               },
               responsive: true,
               legend: {
-                  display: false,
+                  display: true,
                   position: 'top',
               },
               title: {
-                  display: false,
-                  text: 'Data: ' + datafile + ' || ' + 'County: ' + countycheck + ' || ' + 'Total greater than: $' +  totalcheck
+                  display: true,
+                  //text: datatext + ' / ' + 'County: ' + countycheck + ' / ' + 'Total greater than: $' +  totalcheck
+                  text: datatext
               },
               scales:
               {
@@ -165,7 +121,7 @@ $(document).ready(function() {
 
   };
 
-  runmychart('data/MIXEDBEV_06_2016.json', 'EL PASO', 1000, '');
+  runmychart('data/MIXEDBEV_06_2016.json', 'EL PASO', 1000, '', 'June - 2016');
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),

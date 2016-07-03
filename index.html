@@ -26,9 +26,9 @@
 
           <h1>El Paso County Mixed Beverage Tax Receipts</h1>
           <p>The following visualization represents the mixed beverage tax data reported by El Paso County taxpayers (bars/restaurants) under Chapter 183 of the Texas Tax Code.</p>
-          <p>Using the form below, enter a Sales Greater Than threshold (not required), zip code (not required), and then click a month of data to update visualization.</p>
-          <p>On initial load, the most recent month of data with no options selected will be shown in the chart. Hover over a bar to view establishment name, and other details.</p>
-          <p>Data is made available via the <a href="http://www.texastransparency.org/Data_Center/Search_Datasets.php" target="_blank">Texas Comptroller</a>.</p>
+          <h6>Using the form below, enter a Sales Greater Than threshold (not required), zip code (not required), and then select a month. Update will render your chart.</h6>
+          <h6>On initial load, the most recent month of data with no options selected will be shown in the chart. Hover over a bar to view establishment name, and other details.</h6>
+          <h6>Data is made available via the <a href="http://www.texastransparency.org/Data_Center/Search_Datasets.php" target="_blank">Texas Comptroller</a>.</h6>
 
         </div>
       </div>
@@ -37,32 +37,42 @@
         <div class="col-md-12">
 
           <form class="form-horizontal well">
+
             <div class="form-group">
-              <label for="totalcheck" class="col-sm-2 control-label">Sales Greater Than</label>
+              <label for="totalcheck" class="col-sm-3 control-label">Sales Greater Than</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" id="totalcheck" placeholder="ex. 10000">
+                <input type="text" class="form-control input-sm" id="totalcheck" placeholder="ex. 10000">
               </div>
             </div>
+
             <div class="form-group">
-              <label for="zipcheck" class="col-sm-2 control-label">Zip Code</label>
+              <label for="zipcheck" class="col-sm-3 control-label">Zip Code</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control" id="zipcheck" placeholder="ex. 79936">
+                <input type="text" class="form-control input-sm" id="zipcheck" placeholder="ex. 79936">
               </div>
             </div>
+
             <div class="form-group">
-              <label for="januaryData" class="col-sm-2 control-label">Choose Month</label>
-              <div class="col-sm-10">
-                <h5>2016</h5>
-                <input id="januaryData" class="btn btn-default btn-sm" type="button" value="Jan">
-                <input id="februaryData" class="btn btn-default btn-sm" type="button" value="Feb">
-                <input id="marchData" class="btn btn-default btn-sm" type="button" value="March">
-                <input id="aprilData" class="btn btn-default btn-sm" type="button" value="April">
-                <input id="mayData" class="btn btn-default btn-sm" type="button" value="May">
-                <input id="juneData" class="btn btn-default btn-sm" type="button" value="June">
-                <h5>2015</h5>
-                <input id="decemberData" class="btn btn-default btn-sm" type="button" value="Dec">
+              <label class="col-sm-3 control-label">Select Month</label>
+              <div class="col-sm-3">
+                <select class="form-control input-sm" id="monthcheck">
+                  <option value="MIXEDBEV_06_2016">June - 2016</option>
+                  <option value="MIXEDBEV_05_2016">May - 2016</option>
+                  <option value="MIXEDBEV_04_2016">April - 2016</option>
+                  <option value="MIXEDBEV_03_2016">March - 2016</option>
+                  <option value="MIXEDBEV_02_2016">February - 2016</option>
+                  <option value="MIXEDBEV_01_2016">January - 2016</option>
+                  <option value="MIXEDBEV_12_2015">December - 2015</option>
+                </select>
               </div>
             </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-3 col-sm-9">
+                <input id="renderData" class="btn btn-danger" type="button" value="Update">
+              </div>
+            </div>
+
           </form>
 
         </div>
@@ -80,7 +90,7 @@
         <div class="col-md-12">
 
           <h4>A <a href="http://martinezgabriel.com">Gabriel Martinez</a> project.</h4>
-          <p>Share this with your friends; they might want to know which bar is bringing in the most dinero.</p>
+          <p>Share this with your friends; they might want to know which bars are thriving and taking most of their money.</p>
           <p><a href="https://github.com/gabemartinez/txalcsales-chartjs">View this project on GitHub</a>.</p>
 
         </div>
