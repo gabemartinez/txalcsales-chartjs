@@ -3,7 +3,7 @@ Texas Mixed Beverage Gross Tax Receipts - A single-page Chart.js project.
 
 The visualizations represent the mixed beverage tax data reported by El Paso County taxpayers (bars/restaurants) under Chapter 183 of the Texas Tax Code.
 Using the form below, enter a Sales Greater Than threshold (not required), zip code (not required), and then click a month of data to update visualization.
-On initial load, the most recent month of data with no options selected will be show in the chart. Hover over a bar to view establishment name, and other details.
+On initial load, the most recent month of data with no options selected will be shown in the chart. Hover over a bar to view establishment name, and other details.
 
 [Data Source](http://www.texastransparency.org/Data_Center/Search_Datasets.php)
 
