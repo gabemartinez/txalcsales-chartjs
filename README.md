@@ -9,10 +9,21 @@ On initial load, the most recent month of data with no options selected will be 
 [Data Source](http://www.texastransparency.org/Data_Center/Search_Datasets.php)
 
 # Using Chart.js
+
 [Chart.js](http://www.chartjs.org/)
 
 # Run Locally With SimpleHTTPServer
+
 python -m SimpleHTTPServer 8888
 
-# Use WIP-App
-[Available here.](http://www.txalcsales.martinezgabriel.com/)
+# View the app online
+
+[http://www.txalcsales.martinezgabriel.com/](http://www.txalcsales.martinezgabriel.com/)
+
+# csvtojson was used to convert data
+
+Sweet utility that you can see [here](https://www.npmjs.com/package/csvtojson).
+
+I removed default headers by using the command below:
+
+$ csvtojson MIXEDBEV_07_2016.CSV > MIXEDBEV_07_2016.json --noheader=true
