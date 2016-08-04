@@ -1,15 +1,28 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 $(document).ready(function() {
 
+  $('#totalcheck').keydown(function() {
+      ga('send', 'event', 'mbst input', 'keydown');
+  });
+
+  $('#zipcheck').keydown(function() {
+      ga('send', 'event', 'zipcode input', 'keydown');
+  });
+
+  $( "#monthcheck" ).change(function() {
+    ga('send', 'event', 'month change', 'dropdown');
+  });
+
   $('#renderData').click(function() {
       var monthcheck = $('#monthcheck').val();
       var totalcheck = $('#totalcheck').val();
       var zipcheck = $('#zipcheck').val();
       var datatext = $( "#monthcheck option:selected" ).text();
-      console.log(datatext);
+      //console.log(datatext);
       myBar.destroy();
       myBar.update();
       runmychart('data/'+monthcheck+'.json', 'EL PASO', totalcheck, zipcheck, datatext);
+      ga('send', 'event', 'update button', 'clicked');
   });
 
   var runmychart = function(datafile, countycheck, totalcheck, zipcheck, datatext){
