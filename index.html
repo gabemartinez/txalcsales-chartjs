@@ -16,6 +16,30 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <style>
+
+    @media(max-width:767px){}
+    @media(min-width:768px){
+      #canvasBar {
+        display: none !important;
+      }
+      #canvasHorizontalBar {
+        display: inline !important;
+      }
+    }
+    @media(min-width:992px){
+      #canvasBar {
+        display: inline !important;
+      }
+      #canvasHorizontalBar {
+        display: none !important;
+      }
+    }
+    @media(min-width:1200px){}
+
+    </style>
+
   </head>
   <body>
 
@@ -27,7 +51,7 @@
           <h1>El Paso County Mixed Beverage Sales Tax</h1>
           <p>The following visualization represents the mixed beverage tax data reported by El Paso County taxpayers (bars/restaurants) under Chapter 183 of the Texas Tax Code.</p>
           <h6>Using the form below, enter a Mixed Beverage Sales Tax (MBST) Greater Than threshold (not required), zip code (not required), and then select a month. Update will render your chart.</h6>
-          <h6>On initial load, the most recent month of data with no options selected will be shown in the chart. Hover over a bar to view establishment name, and other details.</h6>
+          <h6>On initial load, the most recent month of data with MBST Greater Than $1000 will be used as options and shown in the chart. Hover over a bar to view establishment name, and other details.</h6>
           <h6><a href="http://comptroller.texas.gov/taxinfo/mixbev/mb_sales.html">As of Jan. 1, 2014</a>, a mixed beverage sales tax is imposed on each mixed beverage (distilled spirits, beer, ale and wine) sold, prepared or served by a mixed beverage permittee in Texas.</h6>
           <h6>Data is made available via the <a href="http://www.texastransparency.org/Data_Center/Search_Datasets.php" target="_blank">Texas Comptroller</a>.</h6>
 
@@ -47,9 +71,31 @@
             </div>
 
             <div class="form-group">
-              <label for="zipcheck" class="col-sm-3 control-label">Zip Code</label>
+              <label class="col-sm-3 control-label">Select Zip Code</label>
               <div class="col-sm-3">
-                <input type="text" class="form-control input-sm" id="zipcheck" placeholder="ex. 79936">
+                <select class="form-control input-sm" id="zipcheck">
+
+                  <option value="79901">79901</option>
+                  <option value="79902">79902</option>
+                  <option value="79903">79903</option>
+                  <option value="79904">79904</option>
+                  <option value="79905">79905</option>
+                  <option value="79906">79906</option>
+                  <option value="79907">79907</option>
+                  <option value="79912">79912</option>
+                  <option value="79922">79922</option>
+                  <option value="79924">79924</option>
+                  <option value="79925">79925</option>
+                  <option value="79927">79927</option>
+                  <option value="79930">79930</option>
+                  <option value="79932">79932</option>
+                  <option value="79934">79934</option>
+                  <option value="79935">79935</option>
+                  <option value="79936">79936</option>
+                  <option value="79938">79938</option>
+                  <option value="79968">79968</option>
+
+                </select>
               </div>
             </div>
 
@@ -83,7 +129,11 @@
     </div>
 
     <div class="container-fluid">
-        <canvas id="canvas"></canvas>
+        <canvas id="canvasBar" style="display: none;"></canvas>
+    </div>
+
+    <div class="container-fluid">
+        <canvas id="canvasHorizontalBar" style="display: inline;"></canvas>
     </div>
 
     <div class="container">
@@ -94,7 +144,7 @@
           <h4>A <a href="http://martinezgabriel.com">Gabriel Martinez</a> project.</h4>
           <p>Share this with your friends; they might want to know which bars are thriving and taking most of their money.</p>
           <p><a href="https://github.com/gabemartinez/txalcsales-chartjs">View this project on GitHub</a>.</p>
-          <p>I wrote a blog post about this project and you can read that <a href="http://martinezgabriel.com/2016/06/03/el-paso-alcohol-sales-chartjs.html">here</a>.</p>
+          <p>I wrote a blog post about this project that you can read <a href="http://martinezgabriel.com/2016/06/03/el-paso-alcohol-sales-chartjs.html">here</a>.</p>
 
         </div>
       </div>

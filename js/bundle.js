@@ -5,22 +5,24 @@ $(document).ready(function() {
       ga('send', 'event', 'mbst input', 'keydown');
   });
 
-  $('#zipcheck').keydown(function() {
-      ga('send', 'event', 'zipcode input', 'keydown');
+  $('#zipcheck').change(function() {
+    ga('send', 'event', 'zipcode change', 'dropdown');
   });
 
-  $( "#monthcheck" ).change(function() {
+  $('#monthcheck').change(function() {
     ga('send', 'event', 'month change', 'dropdown');
   });
 
   $('#renderData').click(function() {
       var monthcheck = $('#monthcheck').val();
       var totalcheck = $('#totalcheck').val();
-      var zipcheck = $('#zipcheck').val();
+      var zipcheck = $( "#zipcheck option:selected" ).text();
       var datatext = $( "#monthcheck option:selected" ).text();
       //console.log(datatext);
       myBar.destroy();
       myBar.update();
+      myBar2.destroy();
+      myBar2.update();
       runmychart('data/'+monthcheck+'.json', 'EL PASO', totalcheck, zipcheck, datatext);
       ga('send', 'event', 'update button', 'clicked');
   });
@@ -29,20 +31,20 @@ $(document).ready(function() {
 
     $.getJSON(datafile, function(json) {
 
-      var ourlabels = function() {
+      var ourLabels = function() {
           //return ["January", "February", "March", "April", "May", "June", "July", "August"];
           var thisarray = [];
 
           if (zipcheck === ''){
             for (i = 0; i < json.length; i++) {
               if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck){
-                thisarray.push(json[i].field2 + json[i].field3);
+                thisarray.push($.trim(json[i].field2) + ' - ' + $.trim(json[i].field3));
               }
             }
           } else {
             for (i = 0; i < json.length; i++) {
               if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck && json[i].field6 == zipcheck){
-                thisarray.push(json[i].field2 + json[i].field3);
+                thisarray.push($.trim(json[i].field2) + ' - ' + $.trim(json[i].field3));
               }
             }
           }
@@ -50,7 +52,9 @@ $(document).ready(function() {
           return thisarray;
       };
 
-      var ourvalues = function() {
+      console.log(ourLabels());
+
+      var ourData = function() {
           //return [20, 30, 40, 50, 60, 70, 80, 90];
           var thisarray = [];
 
@@ -71,24 +75,26 @@ $(document).ready(function() {
           return thisarray;
       };
 
-    var barChartData = {
-        labels: ourlabels(),
-        //labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [{
-            label: 'Reported Tax: $',
-            backgroundColor: "rgba(229,59,81,0.75)",
-            //data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
-            //data: [20, 30, 40, 50, 60, 70, 80, 90]
-            data: ourvalues()
-        }]
+      console.log(ourData());
 
-    };
+      var ourData = {
+          labels: ourLabels(),
+          //labels: ["January", "February", "March", "April", "May", "June", "July"],
+          datasets: [{
+              label: 'Reported Tax: $',
+              backgroundColor: "rgba(229,59,81,0.75)",
+              //data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+              //data: [20, 30, 40, 50, 60, 70, 80, 90]
+              data: ourData()
+          }]
 
-      var ctx = document.getElementById("canvas").getContext("2d");
+      };
+
+      var ctx = document.getElementById("canvasBar").getContext("2d");
 
       window.myBar = new Chart(ctx, {
           type: 'bar',
-          data: barChartData,
+          data: ourData,
           options: {
               elements: {
                   rectangle: {
@@ -107,8 +113,7 @@ $(document).ready(function() {
                   //text: datatext + ' / ' + 'County: ' + countycheck + ' / ' + 'Total greater than: $' +  totalcheck
                   text: datatext
               },
-              scales:
-              {
+              scales: {
                   xAxes: [{
                       display: false
                   }],
@@ -126,6 +131,57 @@ $(document).ready(function() {
                           }
                       }
                   }]
+              },
+              tooltips: {
+                enabled: true,
+              }
+          }
+      });
+
+      var ctx2 = document.getElementById("canvasHorizontalBar").getContext("2d");
+
+      window.myBar2 = new Chart(ctx2, {
+          type: 'horizontalBar',
+          data: ourData,
+          options: {
+              elements: {
+                  rectangle: {
+                      borderWidth: 1,
+                      borderColor: 'rgb(229,59,81)',
+                      borderSkipped: 'bottom'
+                  }
+              },
+              responsive: true,
+              legend: {
+                  display: true,
+                  position: 'top',
+              },
+              title: {
+                  display: true,
+                  //text: datatext + ' / ' + 'County: ' + countycheck + ' / ' + 'Total greater than: $' +  totalcheck
+                  text: datatext
+              },
+              scales: {
+                  yAxes: [{
+                      display: false
+                  }],
+                  xAxes: [{
+                      ticks: {
+                          max: 25000,
+                          min: 0,
+                          stepSize: 5000,
+                          callback: function(value, index, values) {
+                            if(parseInt(value) > 1000){
+                              return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                            } else {
+                              return '$' + value;
+                            }
+                          }
+                      }
+                  }]
+              },
+              tooltips: {
+                enabled: true,
               }
           }
       });
