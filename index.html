@@ -19,7 +19,7 @@
 
     <style>
 
-    @media(max-width:767px){}
+    /*@media(max-width:767px){}
     @media(min-width:768px){
       #canvasBar {
         display: none !important;
@@ -36,7 +36,7 @@
         display: none !important;
       }
     }
-    @media(min-width:1200px){}
+    @media(min-width:1200px){}*/
 
     </style>
 
@@ -75,6 +75,7 @@
               <div class="col-sm-3">
                 <select class="form-control input-sm" id="zipcheck">
 
+                  <option value="all">All</option>
                   <option value="79901">79901</option>
                   <option value="79902">79902</option>
                   <option value="79903">79903</option>
@@ -87,6 +88,7 @@
                   <option value="79924">79924</option>
                   <option value="79925">79925</option>
                   <option value="79927">79927</option>
+                  <option value="79928">79928</option>
                   <option value="79930">79930</option>
                   <option value="79932">79932</option>
                   <option value="79934">79934</option>
@@ -103,6 +105,7 @@
               <label class="col-sm-3 control-label">Select Month</label>
               <div class="col-sm-3">
                 <select class="form-control input-sm" id="monthcheck">
+                  <option value="MIXEDBEV_08_2016">August - 2016</option>
                   <option value="MIXEDBEV_07_2016">July - 2016</option>
                   <option value="MIXEDBEV_06_2016">June - 2016</option>
                   <option value="MIXEDBEV_05_2016">May - 2016</option>
@@ -129,12 +132,12 @@
     </div>
 
     <div class="container-fluid">
-        <canvas id="canvasBar" style="display: none;"></canvas>
+        <canvas id="canvasBar"></canvas>
     </div>
 
-    <div class="container-fluid">
+    <!-- <div class="container-fluid">
         <canvas id="canvasHorizontalBar" style="display: inline;"></canvas>
-    </div>
+    </div> -->
 
     <div class="container">
 

@@ -16,14 +16,12 @@ $(document).ready(function() {
   $('#renderData').click(function() {
       var monthcheck = $('#monthcheck').val();
       var totalcheck = $('#totalcheck').val();
-      var zipcheck = $( "#zipcheck option:selected" ).text();
+      var zipcheck = $( "#zipcheck option:selected" ).val();
       var datatext = $( "#monthcheck option:selected" ).text();
-      //console.log(datatext);
+      //console.log(zipcheck);
       myBar.destroy();
       myBar.update();
-      myBar2.destroy();
-      myBar2.update();
-      runmychart('data/'+monthcheck+'.json', 'EL PASO', totalcheck, zipcheck, datatext);
+      runmychart('data/'+monthcheck+'.json', 71, totalcheck, zipcheck, datatext);
       ga('send', 'event', 'update button', 'clicked');
   });
 
@@ -35,15 +33,15 @@ $(document).ready(function() {
           //return ["January", "February", "March", "April", "May", "June", "July", "August"];
           var thisarray = [];
 
-          if (zipcheck === ''){
+          if (zipcheck === 'all'){
             for (i = 0; i < json.length; i++) {
-              if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck){
+              if (json[i].field10 > totalcheck && $.trim(json[i].field7) == countycheck){
                 thisarray.push($.trim(json[i].field2) + ' - ' + $.trim(json[i].field3));
               }
             }
           } else {
             for (i = 0; i < json.length; i++) {
-              if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck && json[i].field6 == zipcheck){
+              if (json[i].field10 > totalcheck && $.trim(json[i].field7) == countycheck && json[i].field6 == zipcheck){
                 thisarray.push($.trim(json[i].field2) + ' - ' + $.trim(json[i].field3));
               }
             }
@@ -52,21 +50,21 @@ $(document).ready(function() {
           return thisarray;
       };
 
-      console.log(ourLabels());
+      //console.log(ourLabels());
 
       var ourData = function() {
           //return [20, 30, 40, 50, 60, 70, 80, 90];
           var thisarray = [];
 
-          if (zipcheck === ''){
+          if (zipcheck === 'all'){
             for (i = 0; i < json.length; i++) {
-              if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck){
+              if (json[i].field10 > totalcheck && $.trim(json[i].field7) == countycheck){
                 thisarray.push(json[i].field10);
               }
             }
           } else {
             for (i = 0; i < json.length; i++) {
-              if (json[i].field10 > totalcheck && $.trim(json[i].field4) == countycheck && json[i].field6 == zipcheck){
+              if (json[i].field10 > totalcheck && $.trim(json[i].field7) == countycheck && json[i].field6 == zipcheck){
                 thisarray.push(json[i].field10);
               }
             }
@@ -75,7 +73,7 @@ $(document).ready(function() {
           return thisarray;
       };
 
-      console.log(ourData());
+      //console.log(ourData());
 
       var ourData = {
           labels: ourLabels(),
@@ -138,59 +136,11 @@ $(document).ready(function() {
           }
       });
 
-      var ctx2 = document.getElementById("canvasHorizontalBar").getContext("2d");
-
-      window.myBar2 = new Chart(ctx2, {
-          type: 'horizontalBar',
-          data: ourData,
-          options: {
-              elements: {
-                  rectangle: {
-                      borderWidth: 1,
-                      borderColor: 'rgb(229,59,81)',
-                      borderSkipped: 'bottom'
-                  }
-              },
-              responsive: true,
-              legend: {
-                  display: true,
-                  position: 'top',
-              },
-              title: {
-                  display: true,
-                  //text: datatext + ' / ' + 'County: ' + countycheck + ' / ' + 'Total greater than: $' +  totalcheck
-                  text: datatext
-              },
-              scales: {
-                  yAxes: [{
-                      display: false
-                  }],
-                  xAxes: [{
-                      ticks: {
-                          max: 25000,
-                          min: 0,
-                          stepSize: 5000,
-                          callback: function(value, index, values) {
-                            if(parseInt(value) > 1000){
-                              return '$' + value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                            } else {
-                              return '$' + value;
-                            }
-                          }
-                      }
-                  }]
-              },
-              tooltips: {
-                enabled: true,
-              }
-          }
-      });
-
     });
 
   };
 
-  runmychart('data/MIXEDBEV_07_2016.json', 'EL PASO', 1000, '', 'July - 2016');
+  runmychart('data/MIXEDBEV_08_2016.json', 71, 0, 'all', 'August - 2016');
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
