@@ -6,7 +6,7 @@ Using the form, enter a Mixed Beverage Sales Tax (MBST) Greater Than threshold (
 
 On initial load, the most recent month of data with no options selected will be shown in the chart. Hover over a bar to view establishment name, and other details.
 
-[Data Source](http://www.texastransparency.org/Data_Center/Search_Datasets.php)
+[Data Source](https://www.comptroller.texas.gov/transparency/open-data/search-datasets/)
 
 # Using Chart.js
 
