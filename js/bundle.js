@@ -140,7 +140,7 @@ $(document).ready(function() {
 
   };
 
-  runmychart('data/MIXEDBEV_06_2017.json', 71, 0, 'all', 'April - 2017');
+  runmychart('data/MIXEDBEV_06_2017.json', 71, 0, 'all', 'June - 2017');
 
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
